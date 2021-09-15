@@ -22,9 +22,10 @@ public class FundtransferController {
 		System.out.println("Inside default constructor of FundtransferController");
 	}
 	
-	@PostMapping(path="/fundtransfer") 
+	@PostMapping(path="/transfer") 
 	public Fundtransfer saveFT(@RequestBody Fundtransfer ft) {
 		System.out.println("Inside saveFT of FundtransferController");
+		System.out.println(ft);
 		return ftservice.save(ft);
 	}
 	
@@ -34,5 +35,4 @@ public class FundtransferController {
 		System.out.println("Inside findBydates of FundtransferController");
 		return ftservice.findBydates(start, end);
 	}
-	
 }

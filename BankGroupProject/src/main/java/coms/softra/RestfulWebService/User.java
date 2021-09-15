@@ -2,11 +2,13 @@ package coms.softra.RestfulWebService;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,8 +17,12 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity(name = "users")
+//@Entity
 @Table(name="user",schema="projectdb")
 public class User {
+
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+//	private Fundtransfer fundtransfer;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,7 +47,7 @@ public class User {
 	@Column(name = "accountType")
 	private String accountType;
 	
-	@Column(name = "Account_Balance")
+	@Column(name = "account_balance")
 	private Double accountBalance;
 	
 	@Temporal(value = TemporalType.DATE)
@@ -49,6 +55,7 @@ public class User {
 	@Column(name = "openDate")
 	private Date openDate;
 
+	
 	public User() {}
 	
 	public User(int accountId, int userId, String loginPassword, String secretQuestion, String transactionPassword,
@@ -145,8 +152,5 @@ public class User {
 				+ ", lockStatus=" + lockStatus + ", accountType=" + accountType + ", AccountBalance=" + accountBalance
 				+ ", openDate=" + openDate + "]";
 	}
-
-
 		
 }
-
