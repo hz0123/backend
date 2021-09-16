@@ -1,40 +1,36 @@
 package coms.softra.RestfulWebService;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+
 @Service 
-public class UserService implements IService {
+public class UserService implements UserIService {
 	@Autowired
 	@Qualifier(value = "jparepository")
-	private IDao dao;
+
+	private UserIDao udao;
 	
 	public UserService() {
 		System.out.println("inside UserService");
 	}
 
 	@Override
-	public User findByuserIdAndLoginPassword(int accountId, String password) { 
-		System.out.println("inside verifyUser of UserService");
-		Optional<User> user = dao.findByuserIdAndLoginPassword(accountId, password);
+	public User findByAccountIdAndLoginPassword(int userId, String password) { 
+		System.out.println("inside verifyUser of UserService" + userId + password);
+		Optional<User> user = udao.findByAccountIdAndLoginPassword(userId, password);
 		return user.get();
 	}
-
-//	@Override
-//	public User findByUser_idAndLogin_password(int accountId, String password) { 
-//		System.out.println("inside verifyUser of UserService");
-//		Optional<User> user = dao.findByUser_idAndLogin_password(accountId, password);
-//		return user.get();
-//	}
-	
 	
 	@Override
 	public User save(User user) {
 		System.out.println("inside save of UserService");
-		return dao.save(user);
+		return udao.save(user);
 	}
 
 }
